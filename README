@@ -1,6 +1,6 @@
-= postgres puppet module =
+= heartbeat puppet module =
 
-Manages postgres configuration.
+Manages heartbeat cluster configuration.
 
 == Definitions ==
 
