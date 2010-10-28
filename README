@@ -1,0 +1,23 @@
+= postgres puppet module =
+
+Manages postgres configuration.
+
+== Definitions ==
+
+  * heartbeat
+
+=== heartbeat ===
+
+All parameters have defaults, shown below except for owned_resources,
+whose default is an empty list. Note that a resource should be owned
+by only one host in the cluster, though different hosts may own
+different resources.
+
+define heartbeat { 'clustername':
+  onwed_resources = [ '127.0.0.2', 'http' ],
+  key = 'clustername', # ignored if auth_method is crc
+  iface = 'eth0',
+  auth_method = 'sha1', # or crc, md5
+  ensure = present, # or absent
+}
+

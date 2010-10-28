@@ -1,4 +1,4 @@
-define heartbeat ($owned_resources = '', $key = '', $iface = 'eth0', $auth_method = 'sha1', $ensure = 'present') {
+define heartbeat ($owned_resources = '', $key = '', $iface = 'eth0', $auth_method = 'sha1', $ensure = present) {
     $clusterkey = $key ? {
         ""      => $name,
         default => $method ? {
