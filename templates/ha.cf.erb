@@ -1,0 +1,16 @@
+logfile		/var/log/ha-log
+
+logfacility	local0
+
+keepalive	2
+
+deadtime	10
+warntime	5
+initdead	20
+
+udpport		694
+
+bcast		<%= iface %>
+
+auto_failback	on
+
