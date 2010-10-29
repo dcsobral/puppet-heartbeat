@@ -1,10 +1,15 @@
-define heartbeat ($owned_resources = '', $key = '', $iface = 'eth0', $auth_method = 'sha1', $ensure = present) {
+define heartbeat ($owned_resources = '', $key = '', $configuration = '', $iface = 'eth0', $peerip = '', $auth_method = 'sha1', $ensure = present) {
     $clusterkey = $key ? {
-        ""      => $name,
+        ''      => $name,
         default => $method ? {
             'crc'   => '',
             default => $key,
         }
+    }
+
+    $conf = $configuration ? {
+        ''      => template("heartbeat/ha.cf.erb"),
+        default => $configuration,
     }
 
     package { "heartbeat": ensure => $ensure }
@@ -25,7 +30,7 @@ define heartbeat ($owned_resources = '', $key = '', $iface = 'eth0', $auth_metho
                 ensure  => $ensure,
                 manage  => true,
                 file    => '/etc/heartbeat/ha.cf',
-                content => template("heartbeat/ha.cf.erb"),
+                content => $conf,
                 tag     => $name,
                 require => Package['heartbeat'],
                 notify  => Service['heartbeat'],

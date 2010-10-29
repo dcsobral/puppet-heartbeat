@@ -13,11 +13,15 @@ whose default is an empty list. Note that a resource should be owned
 by only one host in the cluster, though different hosts may own
 different resources.
 
+Note that peerip will only be used in the ha.cf template, which,
+presently, does not require it.
+
 heartbeat { 'clustername':
   onwed_resources = [ '127.0.0.2', 'http' ],
   key = 'clustername', # ignored if auth_method is crc
+  configuration = '', # content of ha.cf -- uses module template by default
   iface = 'eth0',
+  peerip = '', # Peer IP to be used in unicast configurations
   auth_method = 'sha1', # or crc, md5
   ensure = present, # or absent
 }
-
