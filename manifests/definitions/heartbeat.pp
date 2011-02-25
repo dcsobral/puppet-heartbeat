@@ -26,7 +26,7 @@ define heartbeat ($owned_resources = '', $key = '', $configuration = '', $iface 
                 notify  => Service['heartbeat'],
             }
 
-            common::concatfilepart { "ha.cf.$fqdn.header":
+            common::concatfilepart { "0ha.cf.$fqdn.header":
                 ensure  => $ensure,
                 manage  => true,
                 file    => '/etc/heartbeat/ha.cf',
@@ -36,7 +36,7 @@ define heartbeat ($owned_resources = '', $key = '', $configuration = '', $iface 
                 notify  => Service['heartbeat'],
             }
 
-            @@common::concatfilepart { "ha.cf.$fqdn.trailer":
+            @@common::concatfilepart { "2ha.cf.$fqdn.trailer":
                 ensure  => $ensure,
                 manage  => true,
                 file    => '/etc/heartbeat/ha.cf',
@@ -47,7 +47,7 @@ define heartbeat ($owned_resources = '', $key = '', $configuration = '', $iface 
             }
 
             if $owned_resources {
-                @@common::concatfilepart { "haresources.$fqdn":
+                @@common::concatfilepart { "1haresources.$fqdn":
                     ensure  => $ensure,
                     manage  => true,
                     file    => '/etc/heartbeat/haresources',
