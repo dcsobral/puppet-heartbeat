@@ -2,6 +2,8 @@
 
 Manages heartbeat cluster configuration.
 
+Requires: [puppet-common](https://github.com/camptocamp/puppet-common)
+
 == Definitions ==
 
   * heartbeat
